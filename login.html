@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AI Interview</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="landing-container">
+            <header class="top-nav">
+                <a href="index.html" class="text-logo">面試系統</a>
+            </header>
+            <hr>
+            <div class="login-container">
+                <div class="login-card">
+                    <div class="login-traditional">
+                        <div class="input-group">
+                            <label class="required" for="account">account</label>
+                            <input type="text" id="account" name="account" placeholder="請輸入帳號" required>
+                        </div>
+                        <div class="input-group">
+                            <label class="required" for="password">password</label>
+                            <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
+                        </div>
+                        <div class="register-forgot">
+                            <a href="information.html" class="register">註冊</a>
+                            <a href="forgot_password.html" class="forgot-password">忘記密碼</a>
+                        </div>
+                        <button class="submit-btn">登入</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="login-others">
+                    <p>其他方式</p>
+                    <div class="social-icons">
+                        <img src="google-logo.jpg" title="google" class="icon-btn" id="google-login-btn">
+                        <img src="facebook.jpg" title="facebook" class="icon-btn">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="script.js"></script>
+    </body>
+</html>

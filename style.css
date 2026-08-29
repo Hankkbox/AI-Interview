@@ -500,11 +500,11 @@ hr{
     left: 0;
     right: 0;
     z-index: 1200;
-    background: white;
+    background: transparent;
     border-bottom: 1px solid var(--border);
     display: flex;
-    justify-content: space-between;
-    align-items: cneter;
+    justify-content: flex-end;
+    align-items: center;
     padding: 0 28px;
 }
 
@@ -521,19 +521,12 @@ hr{
     text-decoration: none;
 }
 
-.mobile-menu-btn{
-    display: none;
-    border: none;
-    background: none;
-    font-size: 26px;
-    cursor: pointer;
-}
-
 .dashboard-user{
     display: flex;
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    margin-left: auto;
 }
 
 .dashboard-user-photo{
@@ -559,14 +552,16 @@ hr{
     position: fixed;
     left: 0;
     top: var(--header-height);
-    width: var(--sidebar-width);
+    width: 64px;
     height: calc(100vh - var(--header-height));
-    background: white;
+    background: transparent;
     border-right: 1px solid var(--border);
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    padding: 25px 12px;
+    padding: 18px 8px;
+    transition: width 0.25s ease;
+    overflow: hidden;
 }
 
 .sidebar-top{
@@ -580,20 +575,48 @@ hr{
 }
 
 .sidebar-item{
-    padding: 13px 16px;
+    padding: 10px 8px;
     display: flex;
     align-items: center;
-    gap: 13px;
-    border-radius: 9px;
+    justify-content: center;
+    gap: 0;
+    border-radius: 8px;
     color: #393746;
     text-decoration: none;
     font-size: 15px;
     transition: 0.2s;
+    position: relative;
+    width: 100%;
+    overflow: visible;
 }
 
 .sidebar-item:hover{
     background: #f6f3ff;
     color: var(--purple);
+}
+
+.sidebar-item .menu-text,
+.logout-btn .menu-text{
+    position: absolute;
+    left: 52px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    pointer-events: none;
+    background: rgba(18, 29, 51, 0.96);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 7px;
+    font-size: 13px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    z-index: 20;
+}
+
+.sidebar-item:hover .menu-text,
+.logout-btn:hover .menu-text{
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .sidebar-item-active{
@@ -612,11 +635,17 @@ hr{
     width: 100%;
     border: none;
     background: none;
-    padding: 12px 15px;
+    padding: 10px 8px;
     text-align: left;
     cursor: pointer;
     font-size: 15px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    overflow: visible;
+    position: relative;
 }
 
 .logout-btn:hover{
@@ -624,7 +653,7 @@ hr{
 }
 
 .dashboard-main{
-    margin-left: var(--sidebar-width);
+    margin-left: 64px;
     padding:
         calc(var(--header-height) + 40px)
         55px
@@ -1045,4 +1074,61 @@ hr{
     .welcome-decoration{
         display: none;
     }
+}
+
+.app-sidebar{
+    width: 76px;
+    transition: width 0.3s ease;
+}
+
+.app-sidebar.collapsed{
+    width: 64px;
+}
+
+.dashboard-main{
+    margin-left: 64px;
+    transition: margin-left 0.3s ease;
+}
+
+.dashboard-main.sidebar-collapsed{
+    margin-left: 64px;
+}
+
+.app-sidebar.collapsed .menu-text{
+    display: none;
+}
+
+.app-sidebar.collapsed{
+    width: 72px;
+}
+
+.app-sidebar.collapsed .menu-text{
+    display: none;
+}
+
+.app-sidebar.collapsed .sidebar-item{
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.menu-icon{
+    min-width: 24px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.app-sidebar.collapsed .logout-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.app-sidebar.collapsed .logout-btn .menu-text{
+    display: none;
+}
+
+.app-sidebar.collapsed .menu-text,
+.app-sidebar.collapsed .logout-btn .menu-text{
+    opacity: 0;
+    display: none;
 }

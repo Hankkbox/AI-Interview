@@ -10,14 +10,8 @@
     <body>
         <div class="app-shell">
             <header class="app-header">
-                <div class="header-left">
-                    <button id="drawerMenu" class="mobile-menu-btn">
-                        ☰
-                    </button>
-                    <a href="main.html" class="dashboard-logo">
-                        面試系統
-                    </a>
-                </div>
+                <!--<div class="header-left">
+                </div>-->
                 <div id="user-profile" class="dashboard-user">
                     <img
                         id="user-photo"
@@ -44,26 +38,30 @@
                     </button>
                 </div>
                 <nav class="sidebar-menu">
-                    <a href="#" class="sidebar-item">
-                        <span>o</span>
-                        個人資料
+                    <a href="main.html" class="sidebar-item" title="首頁">
+                        <span class="menu-icon">⌂</span>
+                        <span class="menu-text">首頁</span>
                     </a>
-                    <a href="#" class="sidebar-item">
-                        <span>⚙</span>
-                        設定
+                    <a href="#" class="sidebar-item" title="個人資料">
+                        <span class="menu-icon">o</span>
+                        <span class="menu-text">個人資料</span>
+                    </a>
+                    <a href="#" class="sidebar-item" title="設定">
+                        <span class="menu-icon">⚙</span>
+                        <span class="menu-text">設定</span>
                     </a>
                 </nav>
                 <div class="sidebar-bottom">
-                    <button id="logout-btn" class="logout-btn">
-                        <span>⇦</span>
-                        登出
+                    <button id="logout-btn" class="logout-btn" title="登出">
+                        <span class="menu-icon">⇦</span>
+                        <span class="menu-text">登出</span>
                     </button>
                 </div>
             </aside>
 
             <main class="dashboard-main">
                 <section class="welcome-section">
-                    <div>
+                    <!--<div>
                         <h1>
                             Hi, <span id="welcome-name">使用者</span>
                         </h1>
@@ -73,10 +71,7 @@
                         <p>
                             透過AI模擬面試，提升你的表現
                         </p>
-                    </div>
-                    <div class="welcome-decoration">
-                        💬
-                    </div>
+                    </div>-->
                 </section>
 
                 <section class="resume-card">

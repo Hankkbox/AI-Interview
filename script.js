@@ -8,6 +8,16 @@ import {
     onAuthStateChanged,
     signOut
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc,
+    collection,
+    addDoc,
+    getDocs,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,6 +36,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 //=======================
 //側邊選單 
 //=======================
@@ -144,24 +155,23 @@ const welcomeName = document.getElementById('welcome-email');
 const logoutBtn = document.getElementById('logout-btn');
 
 if(userProfile){
-    onAuthStateChanged(auth, function(user){
+    onAuthStateChanged(auth, async function(user){
         if(user){
             console.log("目前使用者：", user);
-            const displayName = user.displayName || "使用者";
-            if(userName){
-                userName.textContent = displayName;
+            const userRef = doc(db, "users", user.uid);
+            const userSnap = await getDoc(userRef);
+            if(!userSnap.exists()){
+                await setDoc(userRef,{
+                    displayName: user.displayName || "使用者",
+                    email: user.email || "",
+                    photoURL: user.photoURL || "",
+                    createdAT: serverTimestamp()
+                });
+                console.log("建立使用者資料成功");
             }
-            if(welcomeName){
-                const firstName = displayName.split(" ")[0];
-                welcomeName.textContent = firstName;
-            }
-            if(userPhoto && user.photoURL){
-                userPhoto.src = user.photoURL;
-            }
-        else{
+        }else{
             console.log("目前沒有登入");
             window.location.href = "login.html";
-        }
         }
     });
 }
@@ -187,7 +197,7 @@ if(logoutBtn){
 //==============
 //resume
 //==============
-const resumeFile = document.getElementById("resume-fiel");
+const resumeFile = document.getElementById("resume-file");
 const selectResumeBtn = document.getElementById("select-resume-btn");
 const changeResumeBtn = document.getElementById("change-resume-btn");
 const resumeDropZone = document.getElementById("resume-drop-zone");

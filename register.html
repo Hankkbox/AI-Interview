@@ -14,7 +14,7 @@
             </header>
             <hr>
             <div class="info-container">
-                <form action="main.html">
+                <form id="register-form">
                     <div class="input-group">
                         <div class="input-pass">
                             <label
@@ -24,8 +24,9 @@
                                 輸入密碼
                             </label>
                             <input
-                                type="text"
+                                type="password"
                                 id="input-pass"
+                                minlength="6"
                                 required
                             >
                         </div>
@@ -37,8 +38,9 @@
                                 確認密碼
                             </label>
                             <input
-                                type="text"
+                                type="password"
                                 id="confirm-pass"
+                                minlength="6"
                                 required
                             >
                         </div>
@@ -50,6 +52,10 @@
                         </button>
                     </div>
                 </form>
+                <script
+                    type="module"
+                    src="script.js"
+                ></script>            
             </div>        
         </div>
     </body>

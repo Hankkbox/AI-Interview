@@ -6,7 +6,9 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     onAuthStateChanged,
-    signOut
+    signOut,
+    createUserWithEmailAndPassword,
+    updateProfile
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import {
     getFirestore,
@@ -286,5 +288,120 @@ if(startInterviewBtn){
         console.log("職位:", role);
         console.log("面試類型", type);
         alert(`準備開始 ${role} 的 ${type}`);
+    });
+}
+
+const infoForm = document.getElementById("info-form");
+if(infoForm){
+    infoForm.addEventListener("submit",function(event){
+        event.preventDefault();
+        const lastName = document
+                            .getElementById("last-name")
+                            .value
+                            .trim();
+        const firstName =  document
+                            .getElementById("first-name")
+                            .value
+                            .trim();
+        const phone = document
+                            .getElementById("phone")
+                            .value
+                            .trim();
+        const email = document
+                            .getElementById("gmail")
+                            .value
+                            .trim();
+        const registerProfile = {
+            lastName: lastName,
+            firstName: firstName,
+            phone: phone,
+            email: email
+        };
+        sessionStorage.setItem(
+            "registerProfile",
+            JSON.stringify(registerProfile)
+        );
+        window.location.href = "register.html";
+    });
+}
+
+const registerForm = document.getElementById("register-form");
+if(registerForm){
+    registerForm.addEventListener
+    ("submit",async function(event){event.preventDefault();
+    const profileData = sessionStorage.getItem("registerProfile");
+    if(!profileData){
+        alert("找不到註冊資料");
+        window.location.href = "information.html";
+        return;
+    }
+    const profile = JSON.parse(profileData);
+    const password = document
+                        .getElementById("input-pass")
+                        .value;
+    const confirmPassword = document
+                                .getElementById("confirm-pass")
+                                .value;
+    if(password != confirmPassword){
+        alert("兩個密碼步一樣");
+        return;
+    }
+    if(password.length < 6){
+        alert("至少6位元");
+        return;
+    }
+    try{
+        const userCredential = await createUserWithEmailAndPassword(
+                                    auth,
+                                    profile.email,
+                                    password
+        );
+        const user = userCredential.user;
+        const fullName = profile.lastName + profile.firstName;
+        await updateProfile(user, {displayName:fullName});
+        await setDoc(
+            doc(
+                db,
+                "users",
+                user.uid
+            ),
+            {
+                lastName:
+                    profile.lastName,
+                firstName:
+                    profile.firstName,
+                displayName:
+                    fullName,
+                phoen:
+                    profile.phone,
+                email:
+                    profile.email,
+                authProvider:
+                    "password",
+                createdAt:
+                    serverTimestamp()
+            }
+        );
+        console.log("註冊成功");
+        console.log("UID:", user.uid);
+        sessionStorage.removeItem("registerProfile");
+        alert("註冊成功");window.location.href = "main.html";
+    }catch(error){
+        console.error(
+            "註冊失敗",
+            error.code,
+            error.message
+        );
+        if(error.code === "auth/email-already-in-use"){
+            alert("Email已被註冊");
+        }else if(
+            error.code === "auth/weak-password"){
+            alert("密碼強度過弱");
+        }else if(error.code === "auth/invalid-email"){
+            alert("Email格式不正確");
+        }else{
+            alert("註冊失敗");
+        }
+    }
     });
 }

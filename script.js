@@ -293,38 +293,171 @@ if(startInterviewBtn){
 
 const infoForm = document.getElementById("info-form");
 if(infoForm){
-    infoForm.addEventListener("submit",function(event){
-        event.preventDefault();
-        const lastName = document
-                            .getElementById("last-name")
-                            .value
-                            .trim();
-        const firstName =  document
-                            .getElementById("first-name")
-                            .value
-                            .trim();
-        const phone = document
-                            .getElementById("phone")
-                            .value
-                            .trim();
-        const email = document
-                            .getElementById("gmail")
-                            .value
-                            .trim();
-        const registerProfile = {
-            lastName: lastName,
-            firstName: firstName,
-            phone: phone,
-            email: email
-        };
-        sessionStorage.setItem(
-            "registerProfile",
-            JSON.stringify(registerProfile)
+    const lastNameInput = document.getElementById("last-name");
+    const firstNameInput = document.getElementById("first-name");
+    const phoneInput = document.getElementById("phone");
+    const emailInput = document.getElementById("gmail");
+    const lastNameError = document.getElementById("last-name-error");
+    const firstNameError = document.getElementById("first-name-error");
+    const phoneError = document.getElementByuId("phone-error");
+    const emailError = document.getElementById("email-error");
+    const nameRegex = /^[\p{L}\s.'-]+$/u;
+    const phoneRegex = /^09\d{8}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function showError(
+        input,
+        errorElement,
+        message){
+            input.classList.add("input-error");
+            input.classList.remove("input-success");
+            return false;
+        }
+    function showSuccess(
+        input,
+        errorElement
+    ){
+        input.classList.remove("input-error");
+        input.classList.add("input-success");
+        errorElement.textContent = "";
+        return true;
+    }
+    function validateLastName(){
+        const value = lastNameInput.value.trim();
+        if(!value){
+            return showError(
+                lastNameInput,
+                lastNameError,
+                "請輸入姓氏"
+            );
+        }
+        if(!nameRegex.test(value)){
+            return showError(
+                lastNameInput,
+                lastNameError,
+                "姓氏只能包含中文或英文字母"
+            );
+        }
+        return showSuccess(
+            lastNameInput,
+            lastNameError
         );
-        window.location.href = "register.html";
-    });
+    }
+    function validateFirstName(){
+        const value = firstNameInput.value.trim();
+        if(!value){
+            return showError(
+                firstNameInput,
+                firstNameError,
+                "請輸入名字"
+            );
+        }
+        if(!nameRegex.test(value)){
+            return showSuccess(
+                firstNameInput,
+                firstNameError
+            );
+        }
+    }
+    function validatePhone(){
+        const value = phoneInput.value.trim();
+        if(!value){
+            return showError(
+                phoneInput,
+                phoneError,
+                "請輸入手機號碼"
+            );
+        }
+        if(!phoneRegex.test(value)){
+            return showError(
+                phoneInput,
+                phoneError,
+                "手機號碼格式為 09xxxxxxxx"
+            );
+        }
+        return showSuccess(
+            phoneInput,
+            phoneError
+        );
+    }
+    function validateEmail(){
+        const value = emailInput.value.trim();
+        if(!value){
+            return showError(
+                emailInput,
+                emailError,
+                "請輸入電子郵件"
+            );
+        }
+        if(!emailRegex.test(value)){
+            return showError(
+                emailInput,
+                emailError,
+                "Email 格式不正確"
+            );
+        }
+        return showSuccess(
+            emailInput,
+            emailError
+        );
+    }    
+    lastNameInput.addEventListener(
+        "input",
+        validateLastName
+    );
+    firstNameInput.addEventListener(
+        "input",
+        validateFirstName
+    );
+    phoneInput.addEventListener(
+        "input",
+        function(){
+            this.value
+                =this.value
+                    .replace(/\D/g, "")
+                    .slice(0,10);
+            validatePhone();
+        }
+    );
+    emailInput.addEventListener(
+        "input",
+        validateEmail
+    );
+    infoForm.addEventListener(
+        "submit",
+        function(event){
+            event.preventDefault();
+            const lastNameValid = validateLastName();
+            const firstNameValid = validateFirstName();
+            const phoneValid = validatePhone();
+            const emailValid = validateEmail();
+            if(
+                !lastNameValid ||
+                !firstNameValid ||
+                !phoneValid ||
+                !emailValid
+            ){
+                return;
+            }
+            const registerProfile = {
+                lastName:
+                    lastNameInput.value.trim(),
+                firstName:
+                    firstNameInput.value.trim(),
+                phone:
+                    phoneInput.value.trim(),
+                email:
+                    emailInput.value.trim()
+            };
+            sessionStorage.setItem(
+                "registerProfile",
+                JSON.stringify(
+                    registerProfile
+                )
+            );
+            window.location.href = "register.html";
+        }
+    );
 }
-
 const registerForm = document.getElementById("register-form");
 if(registerForm){
     registerForm.addEventListener
@@ -372,7 +505,7 @@ if(registerForm){
                     profile.firstName,
                 displayName:
                     fullName,
-                phoen:
+                phone:
                     profile.phone,
                 email:
                     profile.email,

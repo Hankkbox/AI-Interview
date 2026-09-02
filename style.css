@@ -1314,3 +1314,29 @@ select {
         display: none;
     }
 }
+
+.field-error{
+    display: block;
+    margin-top: 5px;
+    color: #dc2626;
+    font-size: 13px;
+}
+
+.info-container .input-group input.input-error{
+    border-color: #dc2626;
+    background-color: #fffafa;
+}
+
+.info-container .input-group input.input-success{
+    border-color: #22c55e;
+}
+
+.info-container .input-group input.input-error:focus{
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.info-container .input-group input.input-success:focus{
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}

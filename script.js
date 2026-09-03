@@ -299,7 +299,7 @@ if(infoForm){
     const emailInput = document.getElementById("gmail");
     const lastNameError = document.getElementById("last-name-error");
     const firstNameError = document.getElementById("first-name-error");
-    const phoneError = document.getElementByuId("phone-error");
+    const phoneError = document.getElementById("phone-error");
     const emailError = document.getElementById("email-error");
     const nameRegex = /^[\p{L}\s.'-]+$/u;
     const phoneRegex = /^09\d{8}$/;
@@ -310,6 +310,7 @@ if(infoForm){
         message){
             input.classList.add("input-error");
             input.classList.remove("input-success");
+            errorElement.textContent = message;
             return false;
         }
     function showSuccess(
@@ -357,6 +358,10 @@ if(infoForm){
                 firstNameError
             );
         }
+        return showSuccess(
+            firstNameInput,
+            firstNameError
+        );
     }
     function validatePhone(){
         const value = phoneInput.value.trim();
@@ -520,11 +525,13 @@ if(registerForm){
         sessionStorage.removeItem("registerProfile");
         alert("註冊成功");window.location.href = "main.html";
     }catch(error){
-        console.error(
-            "註冊失敗",
-            error.code,
-            error.message
-        );
+        console.error("註冊流程失敗");
+        console.error("錯誤代碼：", error.code);
+        console.error("錯誤訊息：", error.message);
+        alert(
+            "註冊流程失敗\n" +
+            error.code
+        );        
         if(error.code === "auth/email-already-in-use"){
             alert("Email已被註冊");
         }else if(

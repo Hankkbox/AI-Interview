@@ -497,9 +497,12 @@ if(registerForm){
             return false;
         }
         passwordError.textContent = "";
-        confirmPasswordInput.classList.remove("input.error");
+        confirmPasswordInput.classList.remove("input-error");
         confirmPasswordInput.classList.add("input-success");
         return true;
+    }
+    if(!validatePassword()){
+        return;
     }
     try{
         const userCredential = await createUserWithEmailAndPassword(

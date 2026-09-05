@@ -1,275 +1,209 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewpoint" content="width=device-width, intial-scale=1.0">
-        <title>AI Interview</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-
-    <body>
-        <div class="app-shell">
-            <header class="app-header">
-                <!--<div class="header-left">
-                </div>-->
-                <div id="user-profile" class="dashboard-user">
-                    <img
-                        id="user-photo"
-                        class="dashboard-user-photo"
-                        src=""
-                        alt="使用者頭像"
-                    >
-                    <div class="dashboard-user-text">
-                        <span id="user-name">
-                            使用者
-                        </span>
-                        <span class="user-arrow">
-                            ▾
-                        </span>
-                    </div>
-            </header>
-            <div id="overlay" class="app-overlay">
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="app-header">
+            <div id="user-profile" class="dashboard-user">
+                <img id="user-photo" class="dashboard-user-photo" src="" alt="使用者頭像">
+                <div class="dashboard-user-text">
+                    <span id="user-name">使用者</span>
+                    <span class="user-arrow">▾</span>
+                </div>
             </div>
-            <aside id="sideDrawer" class="app-sidebar">
-                <div class="sidebar-top">
-                    <button id="closeBtn" class="sidebar-close">
-                        x
-                    </button>
-                </div>
-                <nav class="sidebar-menu">
-                    <a href="main.html" class="sidebar-item" title="首頁">
-                        <span class="menu-icon">⌂</span>
-                        <span class="menu-text">首頁</span>
-                    </a>
-                    <a href="#" class="sidebar-item" title="個人資料">
-                        <span class="menu-icon">o</span>
-                        <span class="menu-text">個人資料</span>
-                    </a>
-                    <a href="#" class="sidebar-item" title="設定">
-                        <span class="menu-icon">⚙</span>
-                        <span class="menu-text">設定</span>
-                    </a>
-                </nav>
-                <div class="sidebar-bottom">
-                    <button id="logout-btn" class="logout-btn" title="登出">
-                        <span class="menu-icon">⇦</span>
-                        <span class="menu-text">登出</span>
-                    </button>
-                </div>
-            </aside>
+        </header>
 
-            <main class="dashboard-main">
-                <section class="resume-card">
-                    <div
-                        id="resume-drop-zone"
-                        class="resume-drop-zone"
-                    >
-                        <div class="resume-file-icon">
-                            📄
-                        </div>
-                        <h3>
-                            上傳你的履歷
-                        </h3>
-                        <p>
-                            支援 PDF、DOC、DOCX 檔案
-                        </p>
-                        <button
-                            id="select-resume-btn"
-                            class="primary-small-btn"
-                            type="buttom"
-                        >
-                            選擇檔案
-                        </button>
-                        <input
-                            type="file"
-                            id="resume-file"
-                            accept=".pdf,.doc,.docx"
-                        >
-                    </div>
-                    <div class="current-resume">
-                        <h3>
-                            目前的履歷
-                        </h3>
-                        <div
-                            id="resume-preview"
-                            class="resume-preview empty"
-                        >
-                            <div class="resume-preview-icon">
-                                📄
-                            </div>
-                            <div class="resume-preview-info">
-                                <strong id="resume-file-name">
-                                    尚未選擇履歷
-                                </strong>
-                                <span id="resume-file-size">
-                                    請先上傳履歷
-                                </span>
-                            </div>
-                            <span
-                                id="resume-check"
-                                class="resume-check"
-                            >
-                            </span>
-                        </div>
-                        <button
-                            id="change-resume-btn"
-                            class="change-file-btn"
-                            type="botton"
-                        >
-                            更換檔案
-                        </button>
-                    </div>
-                </section>
+        <div id="overlay" class="app-overlay"></div>
 
-                <section class="interview-settings">
-                    <div class="setting-card">
-                        <h3>
-                            目標職位
-                        </h3>
-                        <p>
-                            選擇或輸入想練習的職位
-                        </p>
-                        <select id="target-role">
-                            <option value="">
-                                請選擇職位
-                            </option>
-                            <option value="Java 後端工程師">
-                                Java 後端工程師
-                            </option>
-                            <option value="前端工程師">
-                                前端工程師
-                            </option>
-                            <option value="軟體工程師">
-                                軟體工程師
-                            </option>
-                            <option value="資料工程師">
-                                資料工程師
-                        </select>
-                    </div>
-                    <div class="setting-card mode-card">
-                        <h3>
-                            面試模式
-                        </h3>
-                        <p>
-                            面試方式
-                        </p>
-                        <div class="mode-options">
-                            <button
-                                type="button"
-                                class="mode-btn selected"
-                                data-mode="formal"
-                            >
-                                正式
-                            </button>
-                            <button
-                                type="button"
-                                class="mode-btn"
-                                data-mode="practice"
-                            >
-                                練習
-                            </button>
+        <aside id="sideDrawer" class="app-sidebar">
+            <div class="sidebar-top">
+                <button id="closeBtn" class="sidebar-close" type="button">×</button>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="main.html" class="sidebar-item" title="首頁">
+                    <span class="menu-icon">⌂</span>
+                    <span class="menu-text">首頁</span>
+                </a>
+                <a href="#" class="sidebar-item" title="個人資料">
+                    <span class="menu-icon">○</span>
+                    <span class="menu-text">個人資料</span>
+                </a>
+                <a href="#" class="sidebar-item" title="設定">
+                    <span class="menu-icon">⚙</span>
+                    <span class="menu-text">設定</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <button id="logout-btn" class="logout-btn" type="button" title="登出">
+                    <span class="menu-icon">⇦</span>
+                    <span class="menu-text">登出</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <section class="resume-card">
+                <div id="resume-drop-zone" class="resume-drop-zone">
+                    <div class="resume-file-icon">📄</div>
+                    <h3>上傳你的履歷</h3>
+                    <p>支援 PDF、DOC、DOCX 檔案</p>
+                    <button id="select-resume-btn" class="primary-small-btn" type="button">選擇檔案</button>
+                    <input type="file" id="resume-file" accept=".pdf,.doc,.docx">
+                </div>
+
+                <div class="current-resume">
+                    <h3>目前的履歷</h3>
+                    <div id="resume-preview" class="resume-preview empty">
+                        <div class="resume-preview-icon">📄</div>
+                        <div class="resume-preview-info">
+                            <strong id="resume-file-name">尚未選擇履歷</strong>
+                            <span id="resume-file-size">請先上傳履歷</span>
                         </div>
+                        <span id="resume-check" class="resume-check"></span>
                     </div>
-                <section class="start-interview-section">
+                    <button id="change-resume-btn" class="change-file-btn" type="button">更換檔案</button>
+                </div>
+            </section>
+
+            <section class="interview-settings">
+                <div class="setting-card">
+                    <h3>目標職位</h3>
+                    <p>選擇或輸入想練習的職位</p>
+                    <select id="target-role">
+                        <option value="">請選擇職位</option>
+                        <option value="Java 後端工程師">Java 後端工程師</option>
+                        <option value="前端工程師">前端工程師</option>
+                        <option value="軟體工程師">軟體工程師</option>
+                        <option value="資料工程師">資料工程師</option>
+                    </select>
+                </div>
+
+                <div class="setting-card mode-card">
+                    <h3>面試模式</h3>
+                    <p>選擇本次面試的進行方式</p>
+                    <div class="mode-options">
+                        <button type="button" class="mode-btn selected" data-mode="formal">正式</button>
+                        <button type="button" class="mode-btn" data-mode="practice">練習</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="start-interview-section">
+                <button id="start-interview-btn" class="start-interview-btn" type="button" disabled>開始面試</button>
+                <p>預計時間：約15分鐘</p>
+            </section>
+
+            <section class="dashboard-bottom-grid">
+                <div class="recent-card">
+                    <h3>近期練習</h3>
+                    <div class="practice-item">
+                        <div class="practice-icon">&lt;/&gt;</div>
+                        <div class="practice-info">
+                            <strong>Java 後端工程師</strong>
+                            <span>技術面試</span>
+                        </div>
+                        <div class="practice-score good">82分</div>
+                    </div>
+                    <div class="practice-item">
+                        <div class="practice-icon blue">♟</div>
+                        <div class="practice-info">
+                            <strong>產品經歷</strong>
+                            <span>行為面試</span>
+                        </div>
+                        <div class="practice-score normal">76分</div>
+                    </div>
+                    <div class="practice-item">
+                        <div class="practice-icon">♟</div>
+                        <div class="practice-info">
+                            <strong>軟體工程師</strong>
+                            <span>一般面試</span>
+                        </div>
+                        <div class="practice-score good">88分</div>
+                    </div>
+                </div>
+
+                <div class="tips-card">
+                    <h3>小提示</h3>
+                    <div class="tip">
+                        <strong>1. 保持良好的網路連線</strong>
+                        <span>確保面試過程順暢進行</span>
+                    </div>
+                    <div class="tip">
+                        <strong>2. 選擇安靜的環境</strong>
+                        <span>避免背景噪音干擾</span>
+                    </div>
+                    <div class="tip">
+                        <strong>3. 放鬆並做自己</strong>
+                        <span>AI 面試官會提供真實的回饋</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    <!-- 練習模式設定視窗 -->
+        <div
+            id="practice-modal"
+            class="practice-modal-overlay"
+        >
+            <div class="practice-modal">
+                <div class="practice-modal-header">
+                    <h2>練習模式設定</h2>
                     <button
-                        id="start-interview-btn"
-                        class="start-interview-btn"
-                        disabled
+                        id="practice-modal-close"
+                        class="practice-modal-close"
+                        type="button"
                     >
-                        開始面試
+                        ×
                     </button>
-                    <p>
-                        預計時間：約15分鐘
-                    </p>
-                </section>
-
-                <section class="dashboard-botton-grid">
-                    <div class="recent-card">
-                        <h3>
-                            近期練習
-                        </h3>
-                        <div class="practice-item">
-                            <div class="practice-icon">
-                                &lt;/&gt;
-                            </div>
-                            <div class="practice-info">
-                                <strong>
-                                    Java 後端工程師
-                                </strong>
-                                <span>
-                                    技術面試
-                                </span>
-                            </div>
-                            <div class="practice-score good">
-                                82分
-                            </div>
-                        </div>
-                        <div class="practice-item">
-                            <div class="practice-icon blue">
-                                ♟
-                            </div>
-                            <div class="practice-info">
-                                <strong>
-                                    產品經歷
-                                </strong>
-                                <span>
-                                    行為面試
-                                </span>
-                            </div>
-                            <div class="practice-score normal">
-                                76分
-                            </div>
-                        </div>
-                        <div class="practice-item">
-                            <div class="practice-icon">
-                                ♟
-                            </div>
-                            <div class="practice-info">
-                                <strong>
-                                    軟體工程師
-                                </strong>
-                                <span>
-                                    一般面試
-                                </span>
-                            </div>
-                            <div class="practice-score good">
-                                88分
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tips-card">
-                        <h3>
-                            小提示
-                        </h3>
-                        <div class="tip">
-                            <strong>
-                                1.保持良好的網路連線
-                            </strong>
-                            <span>
-                                確保面試過程順暢進行
-                            </span>
-                        </div>
-                        <div class="tip">
-                            <strong>
-                                2.選擇安靜的環境
-                            </strong>
-                            <span>
-                                避免背景噪音干擾
-                            </span>
-                        </div>
-                        <div class="tip">
-                            <strong>
-                                3.放鬆並做自己
-                            </strong>
-                            <span>
-                                AI 面試官會提供真實的回饋
-                            </span>
-                        </div>
-                    </div>
-                </section>
-            </main>
+                </div>
+                <div class="practice-setting">
+                    <label for="practice-style">
+                        風格
+                    </label>
+                    <select id="practice-style">
+                        <option value="normal">
+                            一般
+                        </option>
+                        <option value="friendly">
+                            友善
+                        </option>
+                        <option value="strict">
+                            嚴格
+                        </option>
+                    </select>
+                </div>
+                <div class="practice-setting">
+                    <label for="practice-time">
+                        時間
+                    </label>
+                    <select id="practice-time">
+                        <option value="5">
+                            5 分鐘
+                        </option>
+                        <option value="10" selected>
+                            10 分鐘
+                        </option>
+                        <option value="15">
+                            15 分鐘
+                        </option>
+                    </select>
+                </div>
+                <button
+                    id="practice-confirm-btn"
+                    class="practice-confirm-btn"
+                    type="button"
+                >
+                    完成
+                </button>
+            </div>
         </div>
-        <script type="module" src="script.js"></script>
-    </body>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
 </html>

@@ -480,13 +480,26 @@ if(registerForm){
     const confirmPassword = document
                                 .getElementById("confirm-pass")
                                 .value;
-    if(password != confirmPassword){
-        alert("兩個密碼步一樣");
-        return;
-    }
-    if(password.length < 6){
-        alert("至少6位元");
-        return;
+    const passwordInput=document.getElementById("input-pass");
+    const confirmPasswordInput = document.getElementById("confirm-pass");
+    const passwordError = document.getElementById("password-error");
+    function validatePassword(){
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+        if(password.length < 6){
+            passwordError.textContent = "密碼至少6個字元";
+            confirmPasswordInput.classList.add("input-error");
+            return false;
+        }
+        if(password !== confirmPassword){
+            passwordError.textContent = "兩次輸入不一致";
+            confirmPasswordInput.classList.add("input-error");
+            return false;
+        }
+        passwordError.textContent = "";
+        confirmPasswordInput.classList.remove("input.error");
+        confirmPasswordInput.classList.add("input-success");
+        return true;
     }
     try{
         const userCredential = await createUserWithEmailAndPassword(
@@ -544,4 +557,150 @@ if(registerForm){
         }
     }
     });
+}
+// ========================
+// 面試模式
+// ========================
+
+const modeButtons =
+    document.querySelectorAll(".mode-btn");
+
+const practiceModal =
+    document.getElementById("practice-modal");
+
+const practiceModalClose =
+    document.getElementById("practice-modal-close");
+
+const practiceConfirmBtn =
+    document.getElementById("practice-confirm-btn");
+
+const practiceStyle =
+    document.getElementById("practice-style");
+
+const practiceTime =
+    document.getElementById("practice-time");
+
+
+let selectedMode = "formal";
+
+let selectedPracticeStyle = "normal";
+let selectedPracticeTime = "10";
+
+
+function closePracticeModal(){
+
+    if(practiceModal){
+        practiceModal.classList.remove("show");
+    }
+
+}
+
+
+modeButtons.forEach(function(button){
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            const mode =
+                button.dataset.mode;
+
+
+            modeButtons.forEach(
+                function(item){
+
+                    item.classList.remove(
+                        "selected"
+                    );
+
+                }
+            );
+
+
+            button.classList.add(
+                "selected"
+            );
+
+
+            selectedMode = mode;
+
+
+            if(
+                mode === "practice" &&
+                practiceModal
+            ){
+
+                practiceModal.classList.add(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+});
+
+
+if(practiceModalClose){
+
+    practiceModalClose.addEventListener(
+        "click",
+        closePracticeModal
+    );
+
+}
+
+
+/* 點背景也可以關掉 */
+
+if(practiceModal){
+
+    practiceModal.addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === practiceModal){
+
+                closePracticeModal();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* 完成設定 */
+
+if(practiceConfirmBtn){
+
+    practiceConfirmBtn.addEventListener(
+        "click",
+        function(){
+
+            selectedPracticeStyle =
+                practiceStyle.value;
+
+            selectedPracticeTime =
+                practiceTime.value;
+
+
+            console.log(
+                "練習風格：",
+                selectedPracticeStyle
+            );
+
+            console.log(
+                "練習時間：",
+                selectedPracticeTime
+            );
+
+
+            closePracticeModal();
+
+        }
+    );
+
 }

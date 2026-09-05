@@ -1535,3 +1535,317 @@ select {
 .practice-confirm-btn:active {
     transform: scale(0.98);
 }
+/* =========================
+   Interview Page
+   ========================= */
+
+.interview-page {
+    margin: 0;
+
+    background: #111218;
+    color: #ffffff;
+
+    overflow: hidden;
+}
+
+
+.interview-room {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================
+   Header
+   ========================= */
+
+.interview-header {
+    padding: 14px 24px;
+
+    background: #1b1c22;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+}
+
+
+.interview-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.interview-header-top h2 {
+    margin: 0;
+
+    font-size: 18px;
+}
+
+
+#interview-timer {
+    color: #b8b8c3;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   練習工具列
+   ========================= */
+
+.practice-toolbar {
+    display: flex;
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-top: 14px;
+}
+
+
+.practice-toolbar.hidden {
+    display: none;
+}
+
+
+.practice-tool-btn {
+    min-width: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 10px 15px;
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.practice-tool-btn:hover {
+    background:
+        rgba(108,76,241,0.25);
+
+    transform:
+        translateY(-2px);
+}
+
+
+.tool-icon {
+    font-size: 21px;
+}
+
+
+/* =========================
+   Main
+   ========================= */
+
+.interview-main {
+    position: relative;
+
+    flex: 1;
+
+    display: flex;
+
+    min-height: 0;
+}
+
+
+.video-section {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+
+    padding: 30px;
+}
+
+
+.video-stage {
+    position: relative;
+
+    width: min(950px, 82vw);
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: #24252d;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.35);
+}
+
+
+.video-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #888996;
+
+    font-size: 18px;
+}
+
+
+.video-user-name {
+    position: absolute;
+
+    left: 15px;
+    bottom: 15px;
+
+    padding: 5px 10px;
+
+    border-radius: 6px;
+
+    background:
+        rgba(0,0,0,0.55);
+}
+
+
+/* =========================
+   面試問題
+   ========================= */
+
+.question-box {
+    width: min(900px, 80vw);
+
+    padding: 14px 18px;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.05);
+}
+
+
+.question-label {
+    color: #a996ff;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.question-box p {
+    margin:
+        7px 0 0;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   提示面板
+   ========================= */
+
+.hint-panel {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 280px;
+
+    padding: 18px;
+
+    border:
+        1px solid rgba(108,76,241,0.25);
+
+    border-radius: 14px;
+
+    background:
+        rgba(35,33,47,0.96);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.28);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform:
+        translateX(20px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+}
+
+
+.hint-panel.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateX(0);
+}
+
+
+.hint-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.hint-header h3 {
+    margin: 0;
+
+    font-size: 16px;
+}
+
+
+#hint-close-btn {
+    border: none;
+
+    background: transparent;
+    color: #ffffff;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+
+.hint-content {
+    margin-top: 15px;
+
+    color: #d0d0d7;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}

@@ -1,0 +1,150 @@
+<body class="interview-page">
+    <div class="interview-room">
+        <header class="interview-header">
+            <div class="interview-header-top">
+                <h2>AI Interview</h2>
+                <span id="interview-timer">
+                    00:00
+                </span>
+            </div>
+            <div
+                id="practice-toolbar"
+                class="practice-toolbar"
+            >
+                <button
+                    id="speaker-btn"
+                    class="practice-tool-btn"
+                    type="button"
+                >
+                    <span class="tool-icon">
+                        🔊
+                    </span>
+                    <span>
+                        喇叭
+                    </span>
+                </button>
+                <button
+                    id="repeat-btn"
+                    class="practice-tool-btn"
+                    type="button"
+                >
+                    <span class="tool-icon">
+                        ↻
+                    </span>
+                    <span>
+                        重複問題
+                    </span>
+                </button>
+                <button
+                    id="pause-btn"
+                    class="practice-tool-btn"
+                    type="button"
+                >
+                    <span class="tool-icon">
+                        ⏸
+                    </span>
+                    <span>
+                        暫停
+                    </span>
+                </button>
+                <button
+                    id="hint-btn"
+                    class="practice-tool-btn"
+                    type="button"
+                >
+                    <span class="tool-icon">
+                        💡
+                    </span>
+                    <span>
+                        提示
+                    </span>
+                </button>
+            </div>
+        </header>
+        <main class="interview-main">
+            <section class="video-section">
+                <!-- 給視訊組員 -->
+                <div
+                    id="video-stage"
+                    class="video-stage"
+                >
+                    <div class="video-placeholder">
+                        視訊畫面
+                    </div>
+                    <!-- 之後組員可放 video -->
+                    <!--
+                    <video
+                        id="user-video"
+                        autoplay
+                        playsinline
+                    ></video>
+                    -->
+                    <span class="video-user-name">
+                        你
+                    </span>
+                </div>
+                <div class="question-box">
+                    <span class="question-label">
+                        AI 面試官
+                    </span>
+                    <p id="current-question">
+                        請先簡單介紹一下自己。
+                    </p>
+                </div>
+            </section>
+            <aside
+                id="hint-panel"
+                class="hint-panel"
+            >
+                <div class="hint-header">
+                    <h3>
+                        💡 回答提示
+                    </h3>
+                    <button
+                        id="hint-close-btn"
+                        type="button"
+                    >
+                        ×
+                    </button>
+                </div>
+                <div
+                    id="hint-content"
+                    class="hint-content"
+                >
+                    可以從你的學習背景、
+                    專題經驗與技術能力開始回答。
+                </div>
+            </aside>
+        </main>
+        <footer class="meeting-controls">
+            <button
+                id="mic-btn"
+                class="meeting-btn"
+                type="button"
+            >
+                🎤
+                <span>麥克風</span>
+            </button>
+            <button
+                id="camera-btn"
+                class="meeting-btn"
+                type="button"
+            >
+                📹
+                <span>攝影機</span>
+            </button>
+            <button
+                id="leave-btn"
+                class="meeting-btn leave-btn"
+                type="button"
+            >
+                ☎
+                <span>離開</span>
+            </button>
+        </footer>
+    </div>
+    <script
+        type="module"
+        src="interview.js"
+    ></script>
+</body>

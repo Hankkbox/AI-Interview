@@ -282,6 +282,13 @@ if(startInterviewBtn){
             alert("醒選擇面試類型");
             return;
         }
+        sessionStorage.setItem(
+            "interviewMode",
+            selectedMode
+        );
+
+window.location.href =
+    "interview.html";
         const role = roleSelect.value;
         const type = selectedType.value;
         console.log("履歷:", selectedResume);
